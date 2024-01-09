@@ -1,0 +1,10 @@
+# Virtual Environment
+venv/
+
+# Python
+*.pyc
+*.pyo
+__pycache__
+
+# Django Migrations
+**/migrations/

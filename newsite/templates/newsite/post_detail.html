@@ -1,0 +1,30 @@
+{% extends 'newsite/base.html' %}
+
+{% block title %}{{ post.title }}{% endblock %}
+
+{% block content %}
+    <div class="card">
+        <div class="card-body">
+            <h2 class="card-title">{{ post.title }}</h2>
+            <p class="card-text">{{ post.content }}</p>
+            <p class="card-text">Created at: {{ post.created_at }}</p>
+            <hr>
+            <h3 class="card-title">Comments</h3>
+            {% for comment in comments %}
+                <div class="card">
+                    <div class="card-body">
+                        <p class="card-text">{{ comment.author }} said: {{ comment.text }}</p>
+                        <p class="card-text">Created at: {{ comment.created_at }}</p>
+                    </div>
+                </div>
+                <hr>
+            {% endfor %}
+            <h3 class="card-title">Add a Comment</h3>
+            <form method="post" action="{% url 'add_comment' pk=post.pk %}">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="btn btn-success">Add Comment</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends 'newsite/base.html' %}
+
+{% block title %}Post List{% endblock %}
+
+{% block content %}
+    <div class="card">
+        <div class="card-body">
+            <h2 class="card-title">Latest Posts</h2>
+            {% for post in posts %}
+                <div class="card">
+                    <div class="card-body">
+                        <h3 class="card-title"><a href="{% url 'post_detail' post.id %}">{{ post.title }}</a></h3>
+                        <p class="card-text">{{ post.content }}</p>
+                        <p class="card-text">Author: {{ post.author }}</p>
+                        <p class="card-text">Created at: {{ post.created_at }}</p>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    
+    <a href="{% url 'add_post' %}" class="btn btn-primary mt-3">Create Post</a>
+{% endblock %}
